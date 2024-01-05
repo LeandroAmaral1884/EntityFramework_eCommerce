@@ -20,11 +20,11 @@ namespace eCommerceApi.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var ususriosListas = _repository.Get();
+            var listaUsuarios = _repository.Get();
 
-            return Ok(ususriosListas);
+            return Ok(listaUsuarios);
         }
-        [HttpGet("id")]
+        [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             var usuario = _repository.Get(id);
@@ -35,17 +35,17 @@ namespace eCommerceApi.Controllers
         [HttpPost]
         public IActionResult Add([FromBody]Usuario usuario)
         {
-            usuario.Id = 0;
+        
             _repository.Add(usuario);
             return Ok(usuario);
         }
-        [HttpPut("id")]
+        [HttpPut("{id}")]
 public IActionResult Update([FromBody]Usuario usuario,int id)
         {
             _repository.Update(usuario);
             return Ok(usuario);
         }
-        [HttpDelete("id")]
+        [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             _repository.Delete(id);

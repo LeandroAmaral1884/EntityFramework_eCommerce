@@ -6,9 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-Departamento departamento = new();
-
-
 
 namespace eCommerceModels
 {
