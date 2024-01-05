@@ -1,14 +1,16 @@
-﻿using System;
+﻿using eCommerceModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace eCommerceModels
 {
     public class Usuario
     {
-        public string? Id { get; set; }
+        public int Id { get; set; }
         public string? Nome { get; set; }
         public string? Email { get; set; }
         public string? Sexo { get; set; }
@@ -17,8 +19,9 @@ namespace eCommerceModels
         public string? NomeMae { get; set; }
         public string? SituacaoCadastro { get; set;}
         public DateTimeOffset DataCadastro { get; set;}
-
         public Contato? Contato { get; set; }
+        public ICollection<EnderecoEntrega> ?EnderecoEntregas{ get; set; }
+        public ICollection<Departamento> ?Departamento { get;set; }
         /*
          * TODO - Vincular com as classes:
          * - Contato
