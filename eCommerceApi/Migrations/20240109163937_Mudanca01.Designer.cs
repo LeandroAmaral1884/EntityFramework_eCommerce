@@ -12,8 +12,8 @@ using eCommerceApi.Database;
 namespace eCommerceApi.Migrations
 {
     [DbContext(typeof(eCommerceContext))]
-    [Migration("20240108144925_Mudanca02_Usuario_AddColNomePai")]
-    partial class Mudanca02_Usuario_AddColNomePai
+    [Migration("20240109163937_Mudanca01")]
+    partial class Mudanca01
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -148,21 +148,17 @@ namespace eCommerceApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Mae")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NomeMae")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NomePai")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RG")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Sexo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SituacaoCadastro")

@@ -145,21 +145,17 @@ namespace eCommerceApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Mae")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NomeMae")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NomePai")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RG")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Sexo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SituacaoCadastro")
