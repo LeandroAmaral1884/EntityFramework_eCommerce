@@ -4,25 +4,25 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using eCommerceApi.Database;
+using eCommerceConsole.Database;
 
 #nullable disable
 
-namespace eCommerceApi.Migrations
+namespace eCommerceConsole.Migrations
 {
-    [DbContext(typeof(eCommerceContext))]
-    partial class eCommerceContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(ECommerceContext))]
+    partial class ECommerceContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.0")
+                .HasAnnotation("ProductVersion", "8.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("DepartamentosUsuario", b =>
+            modelBuilder.Entity("DepartamentoUsuario", b =>
                 {
                     b.Property<int>("DepartamentoId")
                         .HasColumnType("int");
@@ -32,12 +32,12 @@ namespace eCommerceApi.Migrations
 
                     b.HasKey("DepartamentoId", "UsuariosId");
 
-                    b.HasIndex("UsuariosId");
+                    b.HasIndex(new[] { "UsuariosId" }, "IX_DepartamentoUsuario_UsuariosId");
 
-                    b.ToTable("DepartamentosUsuario");
+                    b.ToTable("DepartamentoUsuario", (string)null);
                 });
 
-            modelBuilder.Entity("eCommerceModels.Contato", b =>
+            modelBuilder.Entity("eCommerceConsole.Models.Contato", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -56,13 +56,13 @@ namespace eCommerceApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UsuarioId")
+                    b.HasIndex(new[] { "UsuarioId" }, "IX_Contatos_UsuarioId")
                         .IsUnique();
 
                     b.ToTable("Contatos");
                 });
 
-            modelBuilder.Entity("eCommerceModels.Departamentos", b =>
+            modelBuilder.Entity("eCommerceConsole.Models.Departamento", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -77,36 +77,9 @@ namespace eCommerceApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Departamentos");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Informatica"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Moda"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Eletros"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Beleza"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Moveis"
-                        });
                 });
 
-            modelBuilder.Entity("eCommerceModels.EnderecoEntrega", b =>
+            modelBuilder.Entity("eCommerceConsole.Models.EnderecoEntrega", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -118,9 +91,10 @@ namespace eCommerceApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CEP")
+                    b.Property<string>("Cep")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("CEP");
 
                     b.Property<string>("Cidade")
                         .IsRequired()
@@ -148,12 +122,12 @@ namespace eCommerceApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UsuarioId");
+                    b.HasIndex(new[] { "UsuarioId" }, "IX_EnderecoEntrega_UsuarioId");
 
-                    b.ToTable("EnderecoEntrega");
+                    b.ToTable("EnderecoEntrega", (string)null);
                 });
 
-            modelBuilder.Entity("eCommerceModels.Usuario", b =>
+            modelBuilder.Entity("eCommerceConsole.Models.Usuario", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -161,9 +135,10 @@ namespace eCommerceApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("CPF")
+                    b.Property<string>("Cpf")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("CPF");
 
                     b.Property<DateTimeOffset>("DataCadastro")
                         .HasColumnType("datetimeoffset");
@@ -179,8 +154,9 @@ namespace eCommerceApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RG")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("Rg")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("RG");
 
                     b.Property<string>("Sexo")
                         .HasColumnType("nvarchar(max)");
@@ -193,42 +169,42 @@ namespace eCommerceApi.Migrations
                     b.ToTable("Usuarios");
                 });
 
-            modelBuilder.Entity("DepartamentosUsuario", b =>
+            modelBuilder.Entity("DepartamentoUsuario", b =>
                 {
-                    b.HasOne("eCommerceModels.Departamentos", null)
+                    b.HasOne("eCommerceConsole.Models.Departamento", null)
                         .WithMany()
                         .HasForeignKey("DepartamentoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("eCommerceModels.Usuario", null)
+                    b.HasOne("eCommerceConsole.Models.Usuario", null)
                         .WithMany()
                         .HasForeignKey("UsuariosId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("eCommerceModels.Contato", b =>
+            modelBuilder.Entity("eCommerceConsole.Models.Contato", b =>
                 {
-                    b.HasOne("eCommerceModels.Usuario", "Usuario")
+                    b.HasOne("eCommerceConsole.Models.Usuario", "Usuario")
                         .WithOne("Contato")
-                        .HasForeignKey("eCommerceModels.Contato", "UsuarioId")
+                        .HasForeignKey("eCommerceConsole.Models.Contato", "UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Usuario");
                 });
 
-            modelBuilder.Entity("eCommerceModels.EnderecoEntrega", b =>
+            modelBuilder.Entity("eCommerceConsole.Models.EnderecoEntrega", b =>
                 {
-                    b.HasOne("eCommerceModels.Usuario", "Usuario")
+                    b.HasOne("eCommerceConsole.Models.Usuario", "Usuario")
                         .WithMany("EnderecoEntregas")
                         .HasForeignKey("UsuarioId");
 
                     b.Navigation("Usuario");
                 });
 
-            modelBuilder.Entity("eCommerceModels.Usuario", b =>
+            modelBuilder.Entity("eCommerceConsole.Models.Usuario", b =>
                 {
                     b.Navigation("Contato");
 

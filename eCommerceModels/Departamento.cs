@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace eCommerceModels
 {
-   public class Departamento
+   public class Departamentos
     {
          public int Id { get; set; }
 

@@ -31,7 +31,7 @@ namespace eCommerceModels
         public DateTimeOffset DataCadastro { get; set; }
         public Contato? Contato { get; set; }
         public ICollection<EnderecoEntrega>? EnderecoEntregas { get; set; }
-        public ICollection<Departamento>? Departamento { get; set; }
+        public ICollection<Departamentos>? Departamento { get; set; }
         /*
          * TODO - Vincular com as classes:
          * - Contato
